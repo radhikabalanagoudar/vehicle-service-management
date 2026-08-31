@@ -1,0 +1,167 @@
+{
+  "info": {
+    "name": "Vehicle Service Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5001" },
+    { "key": "customerId", "value": "" },
+    { "key": "vehicleId", "value": "" },
+    { "key": "serviceRequestId", "value": "" },
+    { "key": "token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Akhil\",\n  \"email\": \"akhil@test.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/register"
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"akhil@test.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": "{{baseUrl}}/api/auth/login"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customers",
+      "item": [
+        {
+          "name": "Create Customer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rahul\",\n  \"email\": \"rahul@gmail.com\",\n  \"phone\": \"9876543210\",\n  \"address\": \"Bangalore\"\n}"
+            },
+            "url": "{{baseUrl}}/api/customers"
+          }
+        },
+        {
+          "name": "Get All Customers",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/customers" }
+        },
+        {
+          "name": "Get One Customer",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/customers/{{customerId}}" }
+        },
+        {
+          "name": "Update Customer",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rahul Updated\",\n  \"email\": \"rahulupdated@gmail.com\",\n  \"phone\": \"9999999999\",\n  \"address\": \"Bangalore Updated\"\n}"
+            },
+            "url": "{{baseUrl}}/api/customers/{{customerId}}"
+          }
+        },
+        {
+          "name": "Delete Customer",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/api/customers/{{customerId}}" }
+        }
+      ]
+    },
+    {
+      "name": "Vehicles",
+      "item": [
+        {
+          "name": "Create Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleNumber\": \"KA01AB1234\",\n  \"vehicleType\": \"Car\",\n  \"model\": \"Honda City\",\n  \"customerId\": \"{{customerId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/vehicles"
+          }
+        },
+        {
+          "name": "Get All Vehicles",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/vehicles" }
+        },
+        {
+          "name": "Get One Vehicle",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/vehicles/{{vehicleId}}" }
+        },
+        {
+          "name": "Update Vehicle",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicleNumber\": \"KA01AB9999\",\n  \"vehicleType\": \"Car\",\n  \"model\": \"Honda City 2025\",\n  \"customerId\": \"{{customerId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/vehicles/{{vehicleId}}"
+          }
+        },
+        {
+          "name": "Delete Vehicle",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/api/vehicles/{{vehicleId}}" }
+        }
+      ]
+    },
+    {
+      "name": "Service Requests",
+      "item": [
+        {
+          "name": "Create Service Request",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicle\": \"Honda City\",\n  \"problem\": \"Brake issue\",\n  \"serviceDate\": \"2026-08-20\",\n  \"customerId\": \"{{customerId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/service-requests"
+          }
+        },
+        {
+          "name": "Get All Service Requests",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/service-requests" }
+        },
+        {
+          "name": "Get One Service Request",
+          "request": { "method": "GET", "url": "{{baseUrl}}/api/service-requests/{{serviceRequestId}}" }
+        },
+        {
+          "name": "Update Service Request",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicle\": \"Honda City\",\n  \"problem\": \"Brake issue - needs inspection\",\n  \"serviceDate\": \"2026-08-22\",\n  \"status\": \"In Progress\",\n  \"customerId\": \"{{customerId}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/service-requests/{{serviceRequestId}}"
+          }
+        },
+        {
+          "name": "Delete Service Request",
+          "request": { "method": "DELETE", "url": "{{baseUrl}}/api/service-requests/{{serviceRequestId}}" }
+        }
+      ]
+    }
+  ]
+}
